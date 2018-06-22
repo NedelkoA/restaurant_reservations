@@ -1,0 +1,8 @@
+{% extends "reservations/base.html" %}
+{% block title %}List of restaurants{% endblock %}
+{% block body %}
+    <p>Restaurant</p>
+    {% for restaurant in object_list %}
+        <a href="/restaurants/{{ restaurant.pk }}">{{ restaurant.title }}</a><br>
+    {% endfor %}
+{% endblock %}
