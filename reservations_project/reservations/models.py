@@ -15,8 +15,9 @@ class Restaurant(models.Model):
 
 class Reservation(models.Model):
     date = models.DateField()
-    time = models.TimeField(default='00:00')
+    time = models.TimeField(default='10:00')
     visitors = models.IntegerField()
+    table = models.IntegerField(default=1)
     restaurant = models.ForeignKey(
         Restaurant,
         models.CASCADE,

@@ -20,7 +20,8 @@ class ReservationsView(CreateView, DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['reservations'] = Reservation.objects.filter(
-            restaurant_id=self.kwargs['pk'], date=datetime.date(datetime.now()))
+            restaurant_id=self.kwargs['pk'],
+            date=datetime.date(datetime.now()))
         context['form'] = self.get_form()
         return context
 
@@ -28,6 +29,7 @@ class ReservationsView(CreateView, DetailView):
         form = ReservationForm(request.POST)
         if form.is_valid():
             if Reservation.objects.filter(
+                    restaurant_id=kwargs['pk'],
                     date=form.cleaned_data['date'],
                     time=form.cleaned_data['time']).exists():
                 return CreateView.get(self, request, *args, **kwargs)
