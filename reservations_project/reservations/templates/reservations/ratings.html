@@ -1,0 +1,13 @@
+{% extends "reservations/base.html" %}
+{% block title %}Reservations{% endblock %}
+{% block body %}
+    <div class="wrapper">
+        <div class="ratings">
+            {% for restaurant in object_list %}
+                <div class="rating">
+                    {{ restaurant.title }}. Reserves of all time: {{ restaurant.rating }}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

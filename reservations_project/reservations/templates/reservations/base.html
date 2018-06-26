@@ -1,10 +1,20 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'reservations/css/main.css' %}" type="text/css">
     <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
+    <header>
+        <p>Restaurant reservations</p>
+        <div class="navigate">
+            <a href="/restaurants/">Home</a>
+            <a href="{% url 'add_restaurant' %}">New restaurant</a>
+            <a href="{% url 'ratings_restaurants' %}">Ratings</a>
+        </div>
+    </header>
     {% block body %}
     {% endblock %}
 </body>

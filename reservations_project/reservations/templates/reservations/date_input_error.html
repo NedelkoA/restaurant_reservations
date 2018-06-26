@@ -1,0 +1,14 @@
+{% extends "reservations/base.html" %}
+{% block title %}Reservations{% endblock %}
+{% block body %}
+    <div class="wrapper">
+        <div class="error">
+            <p>Incorrect input date or time.</p>
+            <ul>
+                <li>Date must be not early then today.</li>
+                <li>Time must be within 10:00 and 20:00.</li>
+            </ul>
+        </div>
+        <a href="{% url 'reservations' pk %}">Back</a>
+    </div>
+{% endblock %}

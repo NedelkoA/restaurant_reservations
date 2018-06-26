@@ -1,9 +1,11 @@
 from django.db import models
+from django.core.validators import MinValueValidator, MaxValueValidator
+from datetime import time, date
 
 
 class Restaurant(models.Model):
     title = models.CharField(max_length=64)
-    number_seats = models.IntegerField()
+    number_tables = models.IntegerField(validators=[MinValueValidator(5)])
 
     class Meta:
         verbose_name = 'restaurant'
@@ -15,9 +17,17 @@ class Restaurant(models.Model):
 
 class Reservation(models.Model):
     date = models.DateField()
-    time = models.TimeField(default='10:00')
-    visitors = models.IntegerField()
-    table = models.IntegerField(default=1)
+    time = models.TimeField(
+        validators=[
+            MinValueValidator(time(10, 00)),
+            MaxValueValidator(time(20, 00))
+        ])
+    table = models.IntegerField()
+    visitors = models.IntegerField(
+        validators=[
+            MinValueValidator(1)
+        ])
+    contact_email = models.EmailField()
     restaurant = models.ForeignKey(
         Restaurant,
         models.CASCADE,
